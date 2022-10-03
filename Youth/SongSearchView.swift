@@ -13,10 +13,12 @@ struct SongSearchView: View {
     @State private var showSongSheet = false
     @State var scale: CGFloat = 1.0
     
+    @Binding var showSongSearchView: Bool
+    
     var body: some View {
         NavigationView {
             VStack {
-                HStack {
+                VStack {
                     TextField("Nummer", text: $songNumber)
                         .frame(width: 70, height: 25)
                         .foregroundColor(Color.primary)
@@ -33,6 +35,7 @@ struct SongSearchView: View {
                             showSongSheet = false
                             songNumber = ""
                         }
+                        .padding()
                     Button {
                         showSongSheet.toggle()
                         hideKeyboard()
@@ -46,10 +49,23 @@ struct SongSearchView: View {
                             .padding()
                     }
                 }
+                .padding()
                 Spacer()
             }
             .padding()
             .navigationTitle("Song Search")
+            .toolbar {
+                ToolbarItem(placement: ToolbarItemPlacement.principal) {
+                    Button {
+                        showSongSearchView.toggle()
+                    } label: {
+                        Image(systemName: "chevron.compact.down")
+                            .padding(20)
+                            .font(.title)
+                            .foregroundColor(Color.primary)
+                    }
+                }
+            }
             .sheet(isPresented: $showSongSheet, content: {
                 if (showLyric == true) {
                     Image(songNumber)
@@ -61,17 +77,20 @@ struct SongSearchView: View {
                                 self.scale = value.magnitude
                             })
                 }
-                
+                Button {
+                    showSongSheet.toggle()
+                } label: {
+                    Image(systemName: "chevron.compact.down")
+                        .padding(20)
+                        .font(.title)
+                        .foregroundColor(Color.primary)
+                }
                 Image(songNumber)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
+                    .preferredColorScheme(.light)
+                Spacer()
             })
         }
-    }
-}
-
-struct SongSearchView_Previews: PreviewProvider {
-    static var previews: some View {
-        SongSearchView()
     }
 }

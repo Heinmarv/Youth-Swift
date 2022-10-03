@@ -10,63 +10,79 @@ import SwiftUI
 struct YouthHomeView: View {
     @State private var showSongSearchView = false
     @State private var showSettingsView = false
-    
-    let columns = [
-            GridItem(.fixed(100)),
-            GridItem(.flexible()),
-        ]
+    @State private var showFoodOrderView = false
     
     var body: some View {
         NavigationView {
             ScrollView {
-                LazyVGrid(columns: columns) {
-                    Button {
-                        showSongSearchView.toggle()
-                    } label: {
-                        VStack {
-                            Image(systemName: "magazine.fill")
-                                .padding(1)
-                                .font(.largeTitle)
-                                .foregroundColor(.primary)
-                            Text("Liederbuch")
-                                .padding(1)
-                                .padding(.leading, 5)
-                                .padding(.trailing, 5)
-                                .font(.title3)
-                                .foregroundColor(.primary)
-                        }
+                Button {
+                    print("")
+                } label: {
+                    VStack {
+                        Image(systemName: "clock.fill")
+                            .padding(1)
+                            .font(.largeTitle)
+                            .foregroundColor(.primary)
+                        Text("Die Jugend beginnt heute wieder um 19:30 Uhr")
+                            .padding(1)
+                            .padding(.leading, 5)
+                            .padding(.trailing, 5)
+                            .font(.title3)
+                            .foregroundColor(.primary)
                     }
+                    .frame(width: 300, height: 100)
+                    .padding()
                     .cornerRadius(20)
-                    .padding(5)
-                    .background(.regularMaterial)
-                    .cornerRadius(20)
-                    .padding(10)
-                    .frame(minWidth: 200)
-                    
-                    Button {
-                        print("")
-                    } label: {
-                        VStack {
-                            Text("Youth News")
-                                .padding(1)
-                                .font(.largeTitle)
-                                .fontWeight(.bold)
-                                .foregroundColor(.primary)
-                            Text("Die Jugend beginnt heute wieder um 19:30 Uhr")
-                                .padding(1)
-                                .padding(.leading, 5)
-                                .padding(.trailing, 5)
-                                .font(.title3)
-                                .foregroundColor(.primary)
-                        }
-                    }
-                    .cornerRadius(20)
-                    .padding(5)
                     .background(.regularMaterial)
                     .cornerRadius(20)
                     .padding(10)
                 }
-                .padding()
+                
+                Button {
+                    showSongSearchView.toggle()
+                } label: {
+                    VStack {
+                        Image(systemName: "book.fill")
+                            .padding(1)
+                            .font(.largeTitle)
+                            .foregroundColor(.primary)
+                        Text("Liederbuch")
+                            .padding(1)
+                            .padding(.leading, 5)
+                            .padding(.trailing, 5)
+                            .font(.title3)
+                            .foregroundColor(.primary)
+                    }
+                    .frame(width: 300, height: 100)
+                    .padding()
+                    .cornerRadius(20)
+                    .background(.regularMaterial)
+                    .cornerRadius(20)
+                    .padding(10)
+                }
+                
+                Button {
+                    showFoodOrderView.toggle()
+                } label: {
+                    VStack {
+                        Image(systemName: "takeoutbag.and.cup.and.straw.fill")
+                            .padding(1)
+                            .font(.largeTitle)
+                            .foregroundColor(.primary)
+                        Text("Essen bestellen")
+                            .padding(1)
+                            .padding(.leading, 5)
+                            .padding(.trailing, 5)
+                            .font(.title3)
+                            .foregroundColor(.primary)
+                    }
+                    .frame(width: 300, height: 100)
+                    .padding()
+                    .cornerRadius(20)
+                    .background(.regularMaterial)
+                    .cornerRadius(20)
+                    .padding(10)
+                }
             }
             .navigationTitle("Youth Home")
             .toolbar {
@@ -88,8 +104,9 @@ struct YouthHomeView: View {
                     }
                 }
             }
-            .sheet(isPresented: $showSongSearchView, content: {SongSearchView()})
+            .sheet(isPresented: $showSongSearchView, content: {SongSearchView(showSongSearchView: $showSongSearchView)})
             .sheet(isPresented: $showSettingsView, content: {SettingsView(showSettingsView: $showSettingsView)})
+            .sheet(isPresented: $showFoodOrderView, content: {FoodOrderView(showFoodOrderView: $showFoodOrderView)})
         }
     }
 }
