@@ -24,8 +24,11 @@ struct SongSearchView: View {
                         .foregroundColor(Color.primary)
                         .multilineTextAlignment(.leading)
                         .lineLimit(1)
+                        .padding(3)
+                        .padding(.leading, 5)
+                        .padding(.trailing, 5)
                         .mask(RoundedRectangle(cornerRadius: 15, style: .continuous))
-                        .overlay(RoundedRectangle(cornerRadius: 15, style: .continuous).stroke().fill(.black.opacity(0.1)).padding(-5))
+                        .overlay(RoundedRectangle(cornerRadius: 15, style: .continuous).stroke().fill(.primary.opacity(0.5)).padding(-5))
                         .keyboardType(.numberPad)
                         .onSubmit {
                             showSongSheet.toggle()
@@ -46,7 +49,9 @@ struct SongSearchView: View {
                             .background(.blue)
                             .foregroundColor(.white)
                             .cornerRadius(15)
-                            .padding()
+                            .padding(3)
+                            .padding(.leading, 5)
+                            .padding(.trailing, 5)
                     }
                 }
                 .padding()

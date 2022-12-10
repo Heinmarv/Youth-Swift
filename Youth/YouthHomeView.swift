@@ -19,11 +19,11 @@ struct YouthHomeView: View {
                     print("")
                 } label: {
                     VStack {
-                        Image(systemName: "clock.fill")
+                        Image(systemName: "exclamationmark.shield.fill")
                             .padding(1)
                             .font(.largeTitle)
-                            .foregroundColor(.primary)
-                        Text("Die Jugend beginnt heute wieder um 19:30 Uhr")
+                            .foregroundColor(.yellow)
+                        Text("Die Jugend App ist noch in der Beta Version")
                             .padding(1)
                             .padding(.leading, 5)
                             .padding(.trailing, 5)
@@ -61,46 +61,55 @@ struct YouthHomeView: View {
                     .padding(10)
                 }
                 
-                Button {
-                    showFoodOrderView.toggle()
-                } label: {
-                    VStack {
-                        Image(systemName: "takeoutbag.and.cup.and.straw.fill")
-                            .padding(1)
-                            .font(.largeTitle)
-                            .foregroundColor(.primary)
-                        Text("Essen bestellen")
-                            .padding(1)
-                            .padding(.leading, 5)
-                            .padding(.trailing, 5)
-                            .font(.title3)
-                            .foregroundColor(.primary)
-                    }
-                    .frame(width: 300, height: 100)
-                    .padding()
-                    .cornerRadius(20)
-                    .background(.regularMaterial)
-                    .cornerRadius(20)
-                    .padding(10)
-                }
+//                Button {
+//                    showFoodOrderView.toggle()
+//                } label: {
+//                    VStack {
+//                        Image(systemName: "takeoutbag.and.cup.and.straw.fill")
+//                            .padding(1)
+//                            .font(.largeTitle)
+//                            .foregroundColor(.primary)
+//                        Text("Essen bestellen")
+//                            .padding(1)
+//                            .padding(.leading, 5)
+//                            .padding(.trailing, 5)
+//                            .font(.title3)
+//                            .foregroundColor(.primary)
+//                    }
+//                    .frame(width: 300, height: 100)
+//                    .padding()
+//                    .cornerRadius(20)
+//                    .background(.regularMaterial)
+//                    .cornerRadius(20)
+//                    .padding(10)
+//                }
             }
             .navigationTitle("Youth Home")
             .toolbar {
                 ToolbarItemGroup(placement: ToolbarItemPlacement.navigationBarTrailing) {
-                    Menu {
-                        Button(action: {}) {
-                            Label("Lied suchen", systemImage: "magnifyingglass")
-                        }
-                        Button(action: {}) {
-                            Label("Essen bestellen", systemImage: "bag.fill")
-                        }
-                        Button(action: {showSettingsView.toggle()}) {
-                            Label("Einstellungen", systemImage: "gear")
-                        }
+//                    Menu {
+//                        Button(action: {}) {
+//                            Label("Lied suchen", systemImage: "magnifyingglass")
+//                        }
+//                        Button(action: {}) {
+//                            Label("Essen bestellen", systemImage: "bag.fill")
+//                        }
+//                        Button(action: {showSettingsView.toggle()}) {
+//                            Label("Einstellungen", systemImage: "gear")
+//                        }
+//                    } label: {
+//                        Image(systemName: "circle.grid.3x3.circle.fill")
+//                            .resizable()
+//                            .frame(width: 30, height: 30)
+//                    }
+                    
+                    Button {
+                        showSettingsView.toggle()
                     } label: {
-                        Image(systemName: "circle.grid.3x3.circle.fill")
-                            .resizable()
-                            .frame(width: 30, height: 30)
+                        Image(systemName: "gearshape.circle.fill")
+                            .font(.title)
+                            .foregroundColor(.primary)
+                        }
                     }
                 }
             }
@@ -109,7 +118,7 @@ struct YouthHomeView: View {
             .sheet(isPresented: $showFoodOrderView, content: {FoodOrderView(showFoodOrderView: $showFoodOrderView)})
         }
     }
-}
+
 
 struct YouthHomeView_Previews: PreviewProvider {
     static var previews: some View {

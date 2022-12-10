@@ -24,7 +24,7 @@ struct SettingsView: View {
                         }
                     }
                     Section(footer: Text("App Info")) {
-                        Text("Youth 1.0.0")
+                        Text("Youth 1.1.4")
                     }
                 }
             }
